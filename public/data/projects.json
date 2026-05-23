@@ -1,0 +1,38 @@
+[
+  {
+    "id": "durbin-erp",
+    "title": "Enterprise Operations Platform (Durbin ERP)",
+    "description": "Designed and built a platform-scale enterprise solution for Fleet Telematics and Mining Safety IoT, delivering CRM, CMS, and operational modules with real-time dashboards, geospatial tracking, and complex analytics visualizations to support mission-critical workflows.",
+    "stack": ["React", "TypeScript", "TanStack Query & Table", "Zustand", "React Hook Form", "Zod", "ApexCharts", "Shadcn", "Tailwind", "Mapbox"],
+    "links": [],
+    "images": [],
+    "featured": true,
+    "status": "professional"
+  },
+  {
+    "id": "eepc-india",
+    "title": "EEPC India",
+    "description": "Completely redesigned and migrated the platform from PHP to MERN, improving Speed Index by 93.33% (9s to 0.6s) and page load time by 97%. Optimized data fetching using React Query (85% fewer API calls) and implemented secure role-based access control with JWT and HTTP-only cookies.",
+    "stack": ["React", "React Router", "TanStack Query", "React Hook Form", "Recharts", "Bootstrap"],
+    "links": [
+      { "label": "Snapshot", "url": "https://eepc-india.vercel.app/" },
+      { "label": "Live", "url": "https://www.eepcindia.org/" }
+    ],
+    "images": [],
+    "featured": true,
+    "status": "live"
+  },
+  {
+    "id": "vidtube",
+    "title": "VidTube — Video Streaming App",
+    "description": "Built a responsive video streaming application using the YouTube v3 API, implementing video and channel search, category-based filtering, personalized recommendations, and seamless media playback to improve content discovery.",
+    "stack": ["React", "Material UI", "Axios", "Rapid API", "React Router", "React Player"],
+    "links": [
+      { "label": "Live", "url": "https://vidtube-sd.vercel.app/" },
+      { "label": "GitHub", "url": "https://github.com/soumadeep-dey/Video-Streaming-App.git" }
+    ],
+    "images": [],
+    "featured": false,
+    "status": "live"
+  }
+]
