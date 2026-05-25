@@ -4,7 +4,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const OWNER_EMAIL = "contactsoumadeepdey@gmail.com";
-const PORTFOLIO_URL = "https://soumadeep-dey.vercel.app";
+const PORTFOLIO_URL = process.env.PORTFOLIO_URL;
 const LINKEDIN_URL = "https://linkedin.com/in/soumadeep-dey";
 const GITHUB_URL = "https://github.com/soumadeep-dey";
 const RESUME_URL = process.env.RESUME_URL ?? "";
@@ -61,11 +61,22 @@ function buildRequesterEmail(name: string, company?: string): string {
               performance by <strong style="color:#4f9cf9;font-weight:600;">80–97%</strong> across every project I've touched.
             </p>
 
-            <!-- CTA Button -->
-            <table cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+            <!-- Primary CTA: Download Resume -->
+            <table cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
               <tr>
                 <td style="background:#4f9cf9;border-radius:6px;padding:14px 28px;">
-                  <a href="${PORTFOLIO_URL}" style="color:#09090f;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.03em;">
+                  <a href="${RESUME_URL}" style="color:#09090f;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.03em;">
+                    ↓ Download Resume
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Secondary CTA: Portfolio -->
+            <table cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
+              <tr>
+                <td style="background:transparent;border:1px solid rgba(79,156,249,0.35);border-radius:6px;padding:13px 28px;">
+                  <a href="${PORTFOLIO_URL}" style="color:#4f9cf9;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:0.03em;">
                     View Portfolio →
                   </a>
                 </td>
@@ -75,22 +86,22 @@ function buildRequesterEmail(name: string, company?: string): string {
             <!-- Divider -->
             <div style="height:1px;background:rgba(79,156,249,0.12);margin-bottom:28px;"></div>
 
-            <!-- Links row -->
+            <!-- Contact details row -->
             <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:28px;">
               <tr>
+                <td style="padding-right:12px;">
+                  <a href="mailto:${OWNER_EMAIL}" style="display:inline-block;background:rgba(79,156,249,0.08);border:1px solid rgba(79,156,249,0.2);border-radius:5px;padding:10px 16px;color:#4f9cf9;font-size:12px;font-weight:600;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">
+                    Email Me
+                  </a>
+                </td>
                 <td style="padding-right:12px;">
                   <a href="${LINKEDIN_URL}" style="display:inline-block;background:rgba(79,156,249,0.08);border:1px solid rgba(79,156,249,0.2);border-radius:5px;padding:10px 16px;color:#4f9cf9;font-size:12px;font-weight:600;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">
                     LinkedIn
                   </a>
                 </td>
-                <td style="padding-right:12px;">
+                <td>
                   <a href="${GITHUB_URL}" style="display:inline-block;background:rgba(79,156,249,0.08);border:1px solid rgba(79,156,249,0.2);border-radius:5px;padding:10px 16px;color:#4f9cf9;font-size:12px;font-weight:600;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">
                     GitHub
-                  </a>
-                </td>
-                <td>
-                  <a href="mailto:${OWNER_EMAIL}" style="display:inline-block;background:rgba(79,156,249,0.08);border:1px solid rgba(79,156,249,0.2);border-radius:5px;padding:10px 16px;color:#4f9cf9;font-size:12px;font-weight:600;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">
-                    Email Me
                   </a>
                 </td>
               </tr>
@@ -181,12 +192,23 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     typeof company === "string" ? company.trim().slice(0, 100) : undefined;
 
   try {
+    const SENDER = process.env.FROM_EMAIL ?? "onboarding@resend.dev";
+    const FROM_PERSONAL = `Soumadeep Dey <${SENDER}>`;
+    const FROM_BOT = `Portfolio Bot <${SENDER}>`;
+
     // Send resume to requester
     await resend.emails.send({
-      from: "Soumadeep Dey <onboarding@resend.dev>",
+      from: FROM_PERSONAL,
+      replyTo: OWNER_EMAIL,
       to: safeEmail,
       subject: "Resume — Soumadeep Dey · Full Stack Developer",
       html: buildRequesterEmail(safeName, safeCompany),
+      headers: {
+        "X-Entity-Ref-ID": `resume-${Date.now()}`,
+        Precedence: "transactional",
+        "X-Mailer": "Portfolio-Mailer/1.0",
+      },
+      tags: [{ name: "category", value: "resume_request" }],
       ...(RESUME_URL
         ? {
             attachments: [
@@ -201,10 +223,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Notify owner
     await resend.emails.send({
-      from: "Portfolio Bot <onboarding@resend.dev>",
+      from: FROM_BOT,
+      replyTo: safeEmail,
       to: OWNER_EMAIL,
       subject: `Resume requested by ${safeName}${safeCompany ? ` · ${safeCompany}` : ""}`,
       html: buildOwnerNotification(safeName, safeEmail, safeCompany),
+      headers: {
+        "X-Entity-Ref-ID": `notify-${Date.now()}`,
+        Precedence: "transactional",
+      },
     });
 
     return res.status(200).json({ message: "Resume sent successfully" });
