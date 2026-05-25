@@ -12,7 +12,7 @@ export interface ExperienceItem {
   period: string;
   current: boolean;
   highlights: string[];
-  stack: string[];
+  roles?: string[];
 }
 
 export interface ProjectLink {
@@ -25,10 +25,13 @@ export interface ProjectItem {
   title: string;
   description: string;
   stack: string[];
+  bullets?: string[];
   links: ProjectLink[];
   images: string[];
   featured: boolean;
   status: string;
+  type?: "website" | "ai-ml";
+  awardRef?: string;
 }
 
 export interface EducationItem {

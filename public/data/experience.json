@@ -6,12 +6,17 @@
     "location": "Kolkata, India",
     "period": "June 2025 — Present",
     "current": true,
-    "highlights": [
-      "Built a custom ERP platform for Fleet Telematics and Mining Safety IoT, delivering CRM, CMS & enterprise modules with real-time analytics dashboards and complex dynamic charts. Integrated Microsoft SSO & services and Odoo, enabling unified enterprise operations.",
-      "Architected and scaled a custom UI component library using Shadcn, replacing fragmented third-party dependencies. Reduced npm size by 90% (10GB → 500MB), cut UI defects by 60%, and improved build stability.",
-      "Designed a Feature-First / Domain-First frontend architecture with atomic UI layering, reducing git merge conflicts by 60%, improving parallel development, and cutting project setup time by over 80%."
+    "roles": [
+      "Full Stack Developer",
+      "UI Architect",
+      "Platform Engineer",
+      "Frontend Lead"
     ],
-    "stack": ["React", "TypeScript", "TanStack Query", "Zustand", "Shadcn", "Tailwind", "Mapbox", "ApexCharts", "Node.js", "PostgreSQL"]
+    "highlights": [
+      "Built a **custom ERP platform** for **Fleet Telematics** and **Mining Safety IoT**, delivering **CRM, CMS** & enterprise modules with **real-time analytics dashboards** and complex dynamic charts. Integrated **Microsoft SSO** & services and **Odoo**, enabling unified **enterprise operations**.",
+      "Architected and scaled a **custom UI component library** using **Shadcn**, replacing fragmented third-party dependencies. Reduced **npm size by 90%** (10GB → 500MB), cut **UI defects by 60%**, and improved **build stability** and long-term maintainability.",
+      "Designed a **Feature-First / Domain-First frontend architecture** with atomic UI layering, reducing **git merge conflicts by 60%**, improving **parallel development**, and cutting **project setup time by over 80%**."
+    ]
   },
   {
     "id": "andreal",
@@ -20,10 +25,15 @@
     "location": "Kolkata, India",
     "period": "July 2024 — June 2025",
     "current": false,
-    "highlights": [
-      "Engineered high-performance MERN applications, leveraging caching, prefetching, virtualization, pagination, and code splitting to improve load speed by nearly 90%. Designed modular, reusable UI systems, accelerating development cycles by 75%.",
-      "Built secure, scalable backend services, implementing robust authentication, authorization, and file handling. Enabled automated deployments through a Git-based CI/CD pipeline, reducing manual effort by 90% and accelerating release cycles by 85%."
+    "roles": [
+      "Full Stack Developer",
+      "MERN Stack Engineer",
+      "Backend Developer",
+      "Performance Engineer"
     ],
-    "stack": ["React", "Node.js", "Express.js", "MongoDB", "MySQL", "Redux Toolkit", "React Query", "JWT", "OAuth", "Tailwind", "MUI", "Bootstrap"]
+    "highlights": [
+      "Engineered **high-performance MERN applications**, leveraging **caching, prefetching, virtualization, pagination, and code splitting** to improve **load speed by nearly 90%**. Designed **modular, reusable UI systems** with consistent patterns, accelerating **development cycles by 75%**.",
+      "Built **secure, scalable backend services**, implementing robust **authentication, authorization, and file handling**. Enabled **automated deployments** through a **Git-based CI/CD pipeline**, reducing **manual effort by 90%** and accelerating **release cycles by 85%**."
+    ]
   }
 ]

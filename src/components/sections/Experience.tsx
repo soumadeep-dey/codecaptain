@@ -147,24 +147,78 @@ function ExpItem({ item }: { item: ExperienceItem }) {
         </div>
 
         {/* Highlights */}
-        <ul style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 10 }}>
+        <ul
+          style={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            gap: 10,
+          }}
+        >
           {item.highlights.map((h, i) => (
             <li
               key={i}
-              style={{ display: "flex", gap: 10, color: "var(--white-dim)", fontSize: "0.88rem", lineHeight: 1.7 }}
+              style={{
+                display: "flex",
+                gap: 10,
+                color: "var(--white-dim)",
+                fontSize: "0.88rem",
+                lineHeight: 1.7,
+              }}
             >
-              <span style={{ color: "var(--blue)", flexShrink: 0, marginTop: 3, fontSize: "0.6rem" }}>▶</span>
-              <span dangerouslySetInnerHTML={{ __html: h.replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--white);font-weight:600">$1</strong>') }} />
+              <span
+                style={{
+                  color: "var(--blue)",
+                  flexShrink: 0,
+                  marginTop: 3,
+                  fontSize: "0.6rem",
+                }}
+              >
+                ▶
+              </span>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: h.replace(
+                    /\*\*(.+?)\*\*/g,
+                    '<strong style="color:var(--white);font-weight:600">$1</strong>',
+                  ),
+                }}
+              />
             </li>
           ))}
         </ul>
 
-        {/* Stack chips */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 16 }}>
-          {item.stack.map((s) => (
-            <span key={s} className="tag">{s}</span>
-          ))}
-        </div>
+        {/* Role chips */}
+        {item.roles && item.roles.length > 0 && (
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 6,
+              marginTop: 16,
+            }}
+          >
+            {item.roles.map((r) => (
+              <span
+                key={r}
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.65rem",
+                  fontWeight: 600,
+                  color: "var(--blue)",
+                  background: "rgba(79,156,249,0.08)",
+                  border: "1px solid rgba(79,156,249,0.2)",
+                  borderRadius: 3,
+                  padding: "3px 9px",
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                }}
+              >
+                {r}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

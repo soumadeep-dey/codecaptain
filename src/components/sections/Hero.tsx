@@ -203,8 +203,9 @@ export default function Hero() {
             margin: "0 auto 36px",
           }}
         >
-          2+ years crafting high-performance, scalable web applications. 
-          Specialist in React ecosystems, Node.js backends &amp; enterprise-grade UI architectures.
+          2+ years crafting high-performance, scalable web applications.
+          Specialist in React ecosystems, Node.js backends &amp;
+          enterprise-grade UI architectures.
         </p>
 
         {/* CTA */}
@@ -221,18 +222,24 @@ export default function Hero() {
         >
           <button
             className="btn-primary"
-            onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() =>
+              document
+                .getElementById("projects")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
           >
             View Projects
           </button>
-          <a
-            href="/assets/technical-cv.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
             className="btn-ghost"
+            onClick={() =>
+              document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
           >
-            Download CV
-          </a>
+            Hire Me
+          </button>
         </div>
 
         {/* Social links */}
@@ -247,9 +254,21 @@ export default function Hero() {
           }}
         >
           {[
-            { href: "https://github.com/soumadeep-dey", icon: <FiGithub size={20} />, label: "GitHub" },
-            { href: "https://linkedin.com/in/soumadeep-dey", icon: <FiLinkedin size={20} />, label: "LinkedIn" },
-            { href: "mailto:contactsoumadeepdey@gmail.com", icon: <FiMail size={20} />, label: "Email" },
+            {
+              href: "https://github.com/soumadeep-dey",
+              icon: <FiGithub size={20} />,
+              label: "GitHub",
+            },
+            {
+              href: "https://linkedin.com/in/soumadeep-dey",
+              icon: <FiLinkedin size={20} />,
+              label: "LinkedIn",
+            },
+            {
+              href: "mailto:contactsoumadeepdey@gmail.com",
+              icon: <FiMail size={20} />,
+              label: "Email",
+            },
           ].map(({ href, icon, label }) => (
             <a
               key={label}
@@ -300,10 +319,20 @@ export default function Hero() {
             margin: "0 auto",
           }}
         >
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.68rem", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.68rem",
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+            }}
+          >
             scroll
           </span>
-          <FiArrowDown size={16} style={{ animation: "bounce 2s ease-in-out infinite" }} />
+          <FiArrowDown
+            size={16}
+            style={{ animation: "bounce 2s ease-in-out infinite" }}
+          />
           <style>{`@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}`}</style>
         </button>
       </div>

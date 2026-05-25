@@ -2,8 +2,24 @@
   {
     "id": "durbin-erp",
     "title": "Enterprise Operations Platform (Durbin ERP)",
-    "description": "Designed and built a platform-scale enterprise solution for Fleet Telematics and Mining Safety IoT, delivering CRM, CMS, and operational modules with real-time dashboards, geospatial tracking, and complex analytics visualizations to support mission-critical workflows.",
-    "stack": ["React", "TypeScript", "TanStack Query & Table", "Zustand", "React Hook Form", "Zod", "ApexCharts", "Shadcn", "Tailwind", "Mapbox"],
+    "type": "website",
+    "description": "Platform-scale enterprise solution for **Fleet Telematics** and **Mining Safety IoT** — built from scratch with real-time dashboards, geospatial tracking, and complex analytics.",
+    "bullets": [
+      "Designed and built **CRM, CMS, and operational modules** with **real-time analytics dashboards** and dynamic charts for fleet and mining workflows",
+      "Integrated **Microsoft SSO** and **Odoo** enabling unified enterprise operations across teams",
+      "Architected a **custom UI component library** using Shadcn — reduced **npm size by 90%** (10GB → 500MB) and cut **UI defects by 60%**",
+      "Designed a **Feature-First / Domain-First frontend architecture** reducing **git merge conflicts by 60%** and **project setup time by 80%**"
+    ],
+    "stack": [
+      "React",
+      "TypeScript",
+      "TanStack Query",
+      "Zustand",
+      "Shadcn",
+      "Tailwind",
+      "Mapbox",
+      "ApexCharts"
+    ],
     "links": [],
     "images": [],
     "featured": true,
@@ -12,24 +28,151 @@
   {
     "id": "eepc-india",
     "title": "EEPC India",
-    "description": "Completely redesigned and migrated the platform from PHP to MERN, improving Speed Index by 93.33% (9s to 0.6s) and page load time by 97%. Optimized data fetching using React Query (85% fewer API calls) and implemented secure role-based access control with JWT and HTTP-only cookies.",
-    "stack": ["React", "React Router", "TanStack Query", "React Hook Form", "Recharts", "Bootstrap"],
+    "type": "website",
+    "description": "**Completely redesigned and migrated** the platform from **PHP to MERN**, delivering massive performance gains and a modern, scalable architecture.",
+    "bullets": [
+      "Migrated the platform from **PHP to MERN stack** — improved **Speed Index by 93.33%** (9s → 0.6s) and **page load time by 97%**",
+      "Implemented **React Query** reducing redundant API calls by **85%** with smart caching and prefetching",
+      "Built **secure role-based access control** with JWT and HTTP-only cookies for multi-tier user management"
+    ],
+    "stack": [
+      "React",
+      "React Router",
+      "TanStack Query",
+      "React Hook Form",
+      "Recharts",
+      "Bootstrap",
+      "Node.js",
+      "MongoDB"
+    ],
     "links": [
-      { "label": "Snapshot", "url": "https://eepc-india.vercel.app/" },
-      { "label": "Live", "url": "https://www.eepcindia.org/" }
+      {
+        "label": "Snapshot",
+        "url": "https://eepc-india.vercel.app/"
+      },
+      {
+        "label": "Live",
+        "url": "https://www.eepcindia.org/"
+      }
     ],
     "images": [],
     "featured": true,
-    "status": "live"
+    "status": "professional"
+  },
+  {
+    "id": "nemo",
+    "title": "NEMO — Voice Controlled AI Assistant",
+    "type": "ai-ml",
+    "description": "**Voice controlled personal virtual assistant** driven by AI/ML — responds to natural language commands, executes tasks, and engages users in a **human-like manner**. Recognised at SIH 2023.",
+    "bullets": [
+      "Built a **voice-first AI assistant** using Python, speech recognition, OpenAI, and NLTK for natural language understanding",
+      "Implemented **intelligent query resolver**, browser control, open/close apps, search and play media, **send email and WhatsApp messages**",
+      "Added **task and appointment scheduling**, navigation & directions, **weather forecasting**, and contact/email management",
+      "**Ranked 7th among 74 teams** at Smart India Hackathon 2023 — also exhibited at **WBSCST Intellectual Property Rights Exhibition**"
+    ],
+    "stack": [
+      "Python",
+      "OpenAI",
+      "NLTK",
+      "MongoDB",
+      "speech_recognition",
+      "pyttsx3",
+      "BeautifulSoup",
+      "geopy",
+      "Tkinter"
+    ],
+    "links": [
+      {
+        "label": "SIH Award",
+        "url": "#awards"
+      },
+      {
+        "label": "Demo",
+        "url": "https://www.youtube.com/watch?v=s6moWG6B47I"
+      }
+    ],
+    "images": [],
+    "featured": true,
+    "status": "live",
+    "awardRef": "sih"
   },
   {
     "id": "vidtube",
     "title": "VidTube — Video Streaming App",
-    "description": "Built a responsive video streaming application using the YouTube v3 API, implementing video and channel search, category-based filtering, personalized recommendations, and seamless media playback to improve content discovery.",
-    "stack": ["React", "Material UI", "Axios", "Rapid API", "React Router", "React Player"],
+    "type": "website",
+    "description": "**Responsive video streaming application** using the YouTube v3 API with category filtering, channel search, and seamless media playback.",
+    "bullets": [
+      "Built a **responsive video streaming app** consuming the **YouTube v3 API** via RapidAPI",
+      "Implemented **video and channel search**, **category-based filtering**, and **personalized recommendations**",
+      "Integrated **React Player** for smooth in-app media playback without redirecting to YouTube"
+    ],
+    "stack": [
+      "React",
+      "Material UI",
+      "Axios",
+      "Rapid API",
+      "React Router",
+      "React Player"
+    ],
     "links": [
-      { "label": "Live", "url": "https://vidtube-sd.vercel.app/" },
-      { "label": "GitHub", "url": "https://github.com/soumadeep-dey/Video-Streaming-App.git" }
+      {
+        "label": "Live",
+        "url": "https://vidtube-sd.vercel.app/"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/soumadeep-dey/Video-Streaming-App.git"
+      }
+    ],
+    "images": [],
+    "featured": false,
+    "status": "live"
+  },
+  {
+    "id": "movie-recommendation",
+    "title": "Movie Recommendation System",
+    "type": "ai-ml",
+    "description": "**Content-based movie recommendation engine** using cosine similarity across **7,500+ movies** including **2,850 Indian regional films**, with intelligent tag generation and vectorized similarity computation.",
+    "bullets": [
+      "Built a **content-based recommendation system** using cosine similarity on a dataset of **7,500+ movies** including **2,850 Indian regional films**",
+      "Generated movie tags by combining **genre, title, top cast, director, keywords, and overview** — stemmed and vectorized into a similarity matrix using Scikit-learn",
+      "Recommends the **top 15 most similar movies** for any queried title with sub-second response"
+    ],
+    "stack": ["Python", "Streamlit", "Scikit-learn", "Pandas", "Numpy", "NLTK"],
+    "links": [
+      {
+        "label": "Live",
+        "url": "http://mrs-sd.streamlit.app/"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/soumadeep-dey/Movie-Recommendation-System"
+      }
+    ],
+    "images": [],
+    "featured": false,
+    "status": "live"
+  },
+  {
+    "id": "spam-classifier",
+    "title": "SMS / Email Spam Classifier",
+    "type": "ai-ml",
+    "description": "**NLP-powered spam detection system** classifying SMS and email messages using **multiple ML algorithms** with thorough preprocessing, EDA visualizations, and comparative model evaluation.",
+    "bullets": [
+      "Developed a **multi-algorithm spam classifier** testing Naive Bayes, SVM, KNN, Decision Tree, Random Forest, AdaBoost, Bagging, Extra Trees, Gradient Boosting, and **XGBoost**",
+      "Conducted thorough **NLP preprocessing**: lowercasing, tokenization, stop-word removal, punctuation stripping, and stemming",
+      "Performed **EDA** with word clouds and histograms; evaluated models with **accuracy, precision, and confusion matrices**"
+    ],
+    "stack": ["Python", "Streamlit", "Scikit-learn", "NLTK", "Pandas", "Numpy"],
+    "links": [
+      {
+        "label": "Live",
+        "url": "https://ssc-sd.streamlit.app/"
+      },
+      {
+        "label": "GitHub",
+        "url": "https://github.com/soumadeep-dey/Sms-Spam-Classifier"
+      }
     ],
     "images": [],
     "featured": false,

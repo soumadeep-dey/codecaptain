@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LINKS = [
-  { id: "hero",     label: "Home" },
-  { id: "about",    label: "About" },
-  { id: "skills",   label: "Skills" },
+  { id: "hero", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "education", label: "Education" },
-  { id: "awards",   label: "Awards" },
-  { id: "contact",  label: "Contact" },
+  { id: "awards", label: "Awards" },
+  { id: "contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -17,6 +17,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("hero");
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -24,8 +25,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Track active section on scroll
+  // Track active section on scroll (only on home page)
   useEffect(() => {
+    if (location.pathname !== "/") return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -43,8 +45,14 @@ export default function Navbar() {
 
   const scrollTo = (id: string) => {
     setOpen(false);
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 350);
+      return;
+    }
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -96,7 +104,12 @@ export default function Navbar() {
               <button
                 onClick={() => scrollTo(id)}
                 className="btn-primary"
-                style={{ padding: "8px 20px", marginLeft: 8, border: "none", cursor: "pointer" }}
+                style={{
+                  padding: "8px 20px",
+                  marginLeft: 8,
+                  border: "none",
+                  cursor: "pointer",
+                }}
               >
                 Hire Me
               </button>
@@ -182,22 +195,25 @@ export default function Navbar() {
               <li key={id}>
                 <button
                   onClick={() => scrollTo(id)}
-                  style={{
-                    background: active === id ? "rgba(79,156,249,0.08)" : "none",
-                    border: "none",
-                    cursor: "pointer",
-                    width: "100%",
-                    textAlign: "left",
-                    padding: "14px 16px",
-                    borderRadius: "var(--radius)",
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.85rem",
-                    fontWeight: 500,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: active === id ? "var(--blue)" : "var(--white-dim)",
-                    transition: "all 0.3s",
-                  } as React.CSSProperties}
+                  style={
+                    {
+                      background:
+                        active === id ? "rgba(79,156,249,0.08)" : "none",
+                      border: "none",
+                      cursor: "pointer",
+                      width: "100%",
+                      textAlign: "left",
+                      padding: "14px 16px",
+                      borderRadius: "var(--radius)",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.85rem",
+                      fontWeight: 500,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: active === id ? "var(--blue)" : "var(--white-dim)",
+                      transition: "all 0.3s",
+                    } as React.CSSProperties
+                  }
                 >
                   {label}
                 </button>
@@ -209,3 +225,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+

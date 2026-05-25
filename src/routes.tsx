@@ -3,6 +3,7 @@ import { useRoutes } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 
 const Home = lazy(() => import("@/pages/Home"));
+const ProjectsPage = lazy(() => import("@/pages/ProjectsPage"));
 
 const Spinner = () => (
   <div
@@ -41,8 +42,18 @@ export default function AppRoutes() {
             </Suspense>
           ),
         },
+        {
+          path: "projects",
+          element: (
+            <Suspense fallback={<Spinner />}>
+              <ProjectsPage />
+            </Suspense>
+          ),
+        },
       ],
     },
   ]);
   return routes;
 }
+
+
