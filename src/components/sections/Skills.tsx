@@ -64,7 +64,7 @@ type SkillIconEntry = { icon: IconType; color: string };
 const SKILL_ICON_MAP: Record<string, SkillIconEntry> = {
   // Languages
   TypeScript: { icon: SiTypescript, color: "#60A5FA" },
-  "JavaScript (ES6+)": { icon: SiJavascript, color: "#FBBF24" },
+  "JavaScript": { icon: SiJavascript, color: "#FBBF24" },
   Python: { icon: SiPython, color: "#FFD43B" },
   Java: { icon: FaJava, color: "#F97316" },
   // Frontend
