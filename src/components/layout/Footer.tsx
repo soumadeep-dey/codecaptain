@@ -44,7 +44,7 @@ export default function Footer() {
             letterSpacing: "0.05em",
           }}
         >
-          Built with React, TypeScript & Vite.
+          Crafted with storytelling, motion &amp; code.
         </p>
         <div
           style={{
@@ -91,7 +91,7 @@ export default function Footer() {
             letterSpacing: "0.1em",
           }}
         >
-          © 2026 Soumadeep Dey
+          © {new Date().getFullYear()} Soumadeep Dey
         </p>
       </div>
     </footer>
