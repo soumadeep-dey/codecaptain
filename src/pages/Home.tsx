@@ -18,7 +18,31 @@ export default function Home() {
           name="description"
           content="Full Stack Developer portfolio of Soumadeep Dey — React, Node.js, TypeScript specialist with 2+ years building scalable enterprise web applications."
         />
-        <meta name="keywords" content="Full Stack Developer, React Developer, Node.js, TypeScript, MERN Stack, Kolkata, India" />
+        <meta
+          name="keywords"
+          content="Full Stack Developer, React Developer, Node.js, TypeScript, MERN Stack, Kolkata, India"
+        />
+        <link rel="canonical" href={import.meta.env.VITE_PORTFOLIO_URL} />
+        <meta property="og:url" content={import.meta.env.VITE_PORTFOLIO_URL} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Soumadeep Dey — Full Stack Developer"
+        />
+        <meta
+          property="og:description"
+          content="Full Stack Developer portfolio of Soumadeep Dey — React, Node.js, TypeScript specialist with 2+ years building scalable enterprise web applications."
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={import.meta.env.VITE_PORTFOLIO_URL} />
+        <meta
+          name="twitter:title"
+          content="Soumadeep Dey — Full Stack Developer"
+        />
+        <meta
+          name="twitter:description"
+          content="Full Stack Developer portfolio of Soumadeep Dey — React, Node.js, TypeScript specialist with 2+ years building scalable enterprise web applications."
+        />
       </Helmet>
       <Hero />
       <MarqueeStrip />

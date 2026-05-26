@@ -85,6 +85,20 @@ export default function ProjectsPage() {
           name="description"
           content="Full portfolio of projects by Soumadeep Dey — enterprise web apps, AI/ML solutions, and personal projects."
         />
+        <link
+          rel="canonical"
+          href={`${import.meta.env.VITE_PORTFOLIO_URL}projects`}
+        />
+        <meta
+          property="og:url"
+          content={`${import.meta.env.VITE_PORTFOLIO_URL}projects`}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Projects — Soumadeep Dey" />
+        <meta
+          property="og:description"
+          content="Full portfolio of projects by Soumadeep Dey — enterprise web apps, AI/ML solutions, and personal projects."
+        />
       </Helmet>
 
       <div
@@ -172,7 +186,11 @@ export default function ProjectsPage() {
               >
                 {f.label}
                 <span style={{ marginLeft: 6, opacity: 0.5 }}>
-                  ({f.key === "all" ? data.length : data.filter((p) => p.type === f.key).length})
+                  (
+                  {f.key === "all"
+                    ? data.length
+                    : data.filter((p) => p.type === f.key).length}
+                  )
                 </span>
               </button>
             ))}
