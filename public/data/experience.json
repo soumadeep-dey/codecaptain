@@ -4,7 +4,8 @@
     "company": "Durbin Technologies Pvt. Ltd.",
     "role": "Full Stack Developer",
     "location": "Kolkata, India",
-    "period": "June 2025 — Present",
+    "startDate": "June 2025",
+    "endDate": "Present",
     "current": true,
     "roles": [
       "Full Stack Developer",
@@ -23,7 +24,8 @@
     "company": "Anderson Technology Pvt. Ltd. (Andreal)",
     "role": "Full Stack Developer",
     "location": "Kolkata, India",
-    "period": "July 2024 — June 2025",
+    "startDate": "July 2024",
+    "endDate": "June 2025",
     "current": false,
     "roles": [
       "Full Stack Developer",

@@ -46,6 +46,7 @@ export default function Education() {
 
         {/* Education Timeline */}
         <div
+          className="timeline-wrapper"
           style={{ position: "relative", paddingLeft: 28, marginBottom: 48 }}
         >
           {/* Timeline line */}
@@ -111,17 +112,10 @@ function EduItem({ item }: { item: EducationItem }) {
           borderLeft: "2px solid var(--blue)",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            gap: 12,
-            marginBottom: 8,
-          }}
-        >
-          <div>
+        {/* Card header */}
+        <div className="edu-card-header">
+          {/* Title + Institution */}
+          <div className="edu-title-wrap">
             <h3
               style={{
                 fontFamily: "var(--font-sans)",
@@ -144,7 +138,8 @@ function EduItem({ item }: { item: EducationItem }) {
               {item.institution}
             </p>
           </div>
-          <div style={{ textAlign: "right", flexShrink: 0 }}>
+          {/* Date + Score */}
+          <div className="edu-date-wrap">
             <span
               style={{
                 fontFamily: "var(--font-mono)",
@@ -155,12 +150,15 @@ function EduItem({ item }: { item: EducationItem }) {
                 padding: "4px 10px",
                 borderRadius: 3,
                 border: "1px solid rgba(238,240,245,0.08)",
-                display: "block",
+                display: "inline-block",
                 marginBottom: 6,
+                whiteSpace: "nowrap",
               }}
             >
-              {item.period}
+              {item.startDate}
+              {item.endDate ? ` — ${item.endDate}` : ""}
             </span>
+            <br />
             <span
               style={{
                 fontFamily: "var(--font-mono)",
@@ -173,16 +171,8 @@ function EduItem({ item }: { item: EducationItem }) {
             </span>
           </div>
         </div>
-        <p
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.68rem",
-            color: "var(--white-dim)",
-            marginTop: 4,
-          }}
-        >
-          {item.location}
-        </p>
+        {/* Location */}
+        <p className="edu-location">{item.location}</p>
       </div>
     </div>
   );
@@ -199,6 +189,7 @@ function CertCard({ cert }: { cert: CertificationItem }) {
         borderRadius: "var(--radius)",
         padding: "18px 22px",
         display: "flex",
+        flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
         gap: 12,
@@ -211,7 +202,7 @@ function CertCard({ cert }: { cert: CertificationItem }) {
         (e.currentTarget.style.borderColor = "rgba(79,156,249,0.1)")
       }
     >
-      <div style={{ flex: 1 }}>
+      <div style={{ flex: 1, minWidth: 0 }}>
         <h4
           style={{
             fontWeight: 700,
@@ -219,6 +210,7 @@ function CertCard({ cert }: { cert: CertificationItem }) {
             color: "var(--white)",
             marginBottom: 4,
             lineHeight: 1.4,
+            wordBreak: "break-word",
           }}
         >
           {cert.title}
@@ -235,7 +227,8 @@ function CertCard({ cert }: { cert: CertificationItem }) {
             color: "var(--white-dim)",
           }}
         >
-          {cert.period}
+          {cert.startDate}
+          {cert.endDate ? ` — ${cert.endDate}` : ""}
         </p>
       </div>
       <a

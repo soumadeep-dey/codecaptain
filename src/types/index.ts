@@ -9,7 +9,8 @@ export interface ExperienceItem {
   company: string;
   role: string;
   location: string;
-  period: string;
+  startDate: string;
+  endDate?: string;
   current: boolean;
   highlights: string[];
   roles?: string[];
@@ -39,7 +40,8 @@ export interface EducationItem {
   degree: string;
   institution: string;
   location: string;
-  period: string;
+  startDate: string;
+  endDate?: string;
   score: string;
 }
 
@@ -48,7 +50,8 @@ export interface CertificationItem {
   title: string;
   issuer: string;
   topic: string;
-  period: string;
+  startDate: string;
+  endDate?: string;
   link: string;
 }
 

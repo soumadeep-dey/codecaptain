@@ -1,7 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY);
+import nodemailer from "nodemailer";
 
 const OWNER_EMAIL = "contactsoumadeepdey@gmail.com";
 const PORTFOLIO_URL = process.env.PORTFOLIO_URL;
@@ -140,29 +138,6 @@ function buildRequesterEmail(name: string, company?: string): string {
 </html>`;
 }
 
-function buildOwnerNotification(
-  name: string,
-  email: string,
-  company?: string,
-): string {
-  return `<!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8"/></head>
-<body style="background:#09090f;color:#eef0f5;font-family:monospace;padding:32px;">
-  <div style="max-width:480px;margin:0 auto;background:#111118;border:1px solid rgba(79,156,249,0.2);border-radius:10px;padding:28px;">
-    <p style="color:#4f9cf9;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:16px;">
-      New Resume Request
-    </p>
-    <table style="width:100%;border-collapse:collapse;">
-      <tr><td style="padding:8px 0;color:#a0a8b8;font-size:13px;width:90px;">Name</td><td style="padding:8px 0;color:#eef0f5;font-size:13px;font-weight:600;">${name}</td></tr>
-      <tr><td style="padding:8px 0;color:#a0a8b8;font-size:13px;">Email</td><td style="padding:8px 0;"><a href="mailto:${email}" style="color:#4f9cf9;font-size:13px;">${email}</a></td></tr>
-      ${company ? `<tr><td style="padding:8px 0;color:#a0a8b8;font-size:13px;">Company</td><td style="padding:8px 0;color:#eef0f5;font-size:13px;">${company}</td></tr>` : ""}
-    </table>
-  </div>
-</body>
-</html>`;
-}
-
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed" });
@@ -191,24 +166,31 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const safeCompany =
     typeof company === "string" ? company.trim().slice(0, 100) : undefined;
 
-  try {
-    const SENDER = process.env.FROM_EMAIL ?? "onboarding@resend.dev";
-    const FROM_PERSONAL = `Soumadeep Dey <${SENDER}>`;
-    const FROM_BOT = `Portfolio Bot <${SENDER}>`;
+  const GMAIL_USER = process.env.GMAIL_USER;
+  const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD;
 
-    // Send resume to requester
-    await resend.emails.send({
-      from: FROM_PERSONAL,
-      replyTo: OWNER_EMAIL,
+  if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
+    console.error("Missing Gmail credentials in environment variables");
+    return res.status(500).json({ message: "Server configuration error." });
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: GMAIL_USER,
+      pass: GMAIL_APP_PASSWORD,
+    },
+  });
+
+  try {
+    // Send resume to requester with owner BCC'd
+    await transporter.sendMail({
+      from: `Soumadeep Dey <${GMAIL_USER}>`,
       to: safeEmail,
+      bcc: OWNER_EMAIL,
+      replyTo: OWNER_EMAIL,
       subject: "Resume — Soumadeep Dey · Full Stack Developer",
       html: buildRequesterEmail(safeName, safeCompany),
-      headers: {
-        "X-Entity-Ref-ID": `resume-${Date.now()}`,
-        Precedence: "transactional",
-        "X-Mailer": "Portfolio-Mailer/1.0",
-      },
-      tags: [{ name: "category", value: "resume_request" }],
       ...(RESUME_URL
         ? {
             attachments: [
@@ -221,22 +203,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         : {}),
     });
 
-    // Notify owner
-    await resend.emails.send({
-      from: FROM_BOT,
-      replyTo: safeEmail,
-      to: OWNER_EMAIL,
-      subject: `Resume requested by ${safeName}${safeCompany ? ` · ${safeCompany}` : ""}`,
-      html: buildOwnerNotification(safeName, safeEmail, safeCompany),
-      headers: {
-        "X-Entity-Ref-ID": `notify-${Date.now()}`,
-        Precedence: "transactional",
-      },
-    });
-
     return res.status(200).json({ message: "Resume sent successfully" });
   } catch (err) {
-    console.error("Resend error:", err);
+    console.error("Nodemailer error:", err);
     return res
       .status(500)
       .json({ message: "Failed to send email. Please try again." });

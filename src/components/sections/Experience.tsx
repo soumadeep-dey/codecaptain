@@ -28,14 +28,21 @@ export default function Experience() {
   if (!data) return null;
 
   return (
-    <section id="experience" ref={ref} style={{ padding: "96px 0", background: "var(--dark)" }}>
+    <section
+      id="experience"
+      ref={ref}
+      style={{ padding: "96px 0", background: "var(--dark)" }}
+    >
       <div className="container">
         <p className="section-eyebrow">Career</p>
         <h2 className="section-title">
           Work <em>Experience</em>
         </h2>
 
-        <div style={{ position: "relative", paddingLeft: 28 }}>
+        <div
+          className="timeline-wrapper"
+          style={{ position: "relative", paddingLeft: 28 }}
+        >
           {/* Timeline line */}
           <div className="timeline-line" />
 
@@ -84,17 +91,9 @@ function ExpItem({ item }: { item: ExperienceItem }) {
         }}
       >
         {/* Header */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            gap: 12,
-            marginBottom: 6,
-          }}
-        >
-          <div>
+        <div className="exp-card-header">
+          {/* Title + Company */}
+          <div className="exp-title-wrap">
             <h3
               style={{
                 fontFamily: "var(--font-sans)",
@@ -117,7 +116,8 @@ function ExpItem({ item }: { item: ExperienceItem }) {
               {item.company}
             </p>
           </div>
-          <div style={{ textAlign: "right", flexShrink: 0 }}>
+          {/* Date */}
+          <div className="exp-date-wrap">
             <span
               style={{
                 fontFamily: "var(--font-mono)",
@@ -128,23 +128,17 @@ function ExpItem({ item }: { item: ExperienceItem }) {
                 padding: "4px 10px",
                 borderRadius: 3,
                 border: "1px solid rgba(238,240,245,0.08)",
-                display: "block",
-                marginBottom: 6,
+                display: "inline-block",
+                whiteSpace: "nowrap",
               }}
             >
-              {item.period}
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.68rem",
-                color: "var(--white-dim)",
-              }}
-            >
-              {item.location}
+              {item.startDate}
+              {item.endDate ? ` — ${item.endDate}` : ""}
             </span>
           </div>
         </div>
+        {/* Location */}
+        <span className="exp-location">{item.location}</span>
 
         {/* Highlights */}
         <ul

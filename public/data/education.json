@@ -4,7 +4,8 @@
     "degree": "Master of Computer Applications (MCA)",
     "institution": "Future Institute of Engineering and Management",
     "location": "Kolkata, India",
-    "period": "Jun 2022 — Jun 2024",
+    "startDate": "Jun 2022",
+    "endDate": "Jun 2024",
     "score": "CGPA: 9.17 / 10"
   },
   {
@@ -12,7 +13,7 @@
     "degree": "Bachelor of Computer Applications (BCA)",
     "institution": "Indira Gandhi National Open University (IGNOU)",
     "location": "India",
-    "period": "Dec 2021",
+    "startDate": "Dec 2021",
     "score": "First Division"
   }
 ]

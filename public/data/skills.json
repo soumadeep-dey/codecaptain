@@ -2,7 +2,7 @@
   {
     "category": "Languages",
     "icon": "code",
-    "skills": ["TypeScript", "JavaScript (ES6+)", "Python", "Java"]
+    "skills": ["TypeScript", "JavaScript", "Python", "Java"]
   },
   {
     "category": "Frontend",

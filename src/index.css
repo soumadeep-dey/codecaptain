@@ -188,6 +188,30 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   background: linear-gradient(180deg, var(--blue) 0%, rgba(79,156,249,0.1) 100%);
 }
 
+/* ── Exp / Edu card header (desktop: row, mobile: column with date first) ── */
+.exp-card-header,
+.edu-card-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.exp-date-wrap,
+.edu-date-wrap {
+  flex-shrink: 0;
+  text-align: right;
+}
+.exp-location,
+.edu-location {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--white-dim);
+  display: block;
+  margin-top: 4px;
+}
+
 /* ── Mobile ── */
 @media (max-width: 768px) {
   section { padding: 60px 0; }
@@ -208,10 +232,85 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   .award-nav-btn { display: none !important; }
 
   .contact-links-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* Experience & Education Timeline Mobile */
+  .timeline-wrapper {
+    padding-left: 0 !important;
+  }
+
+  .timeline-line {
+    display: none !important;
+  }
+
+  /* Hide timeline dots */
+  .exp-item > div:first-of-type,
+  .edu-item > div:first-of-type {
+    display: none !important;
+  }
+
+  /* Adjust cards for mobile */
+  .exp-item, .edu-item {
+    padding-bottom: 32px !important;
+  }
+
+  /* Card header: stack vertically, date first */
+  .exp-card-header,
+  .edu-card-header {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .exp-date-wrap,
+  .edu-date-wrap {
+    order: -1;
+    text-align: left;
+  }
+
+  /* Certification cards - responsive layout */
+  .cert-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 16px 18px !important;
+  }
+
+  .cert-card > div:first-child {
+    width: 100% !important;
+  }
+
+  .cert-card a {
+    align-self: flex-start !important;
+  }
 }
 
 @media (max-width: 480px) {
   .contact-links-grid { grid-template-columns: 1fr !important; }
   .skills-grid { grid-template-columns: 1fr !important; }
   .edu-cert-grid { grid-template-columns: 1fr !important; }
+
+  /* Further reduce padding and font sizes for small screens */
+  section { padding: 48px 0; }
+
+  /* Very small screen adjustments */
+  .container { padding: 0 16px !important; }
+
+  /* Certification cards on very small screens */
+  .cert-card {
+    padding: 12px 14px !important;
+  }
+
+  .cert-card h4 {
+    font-size: 0.8rem !important;
+  }
+
+  .cert-card a {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  /* Experience/Education cards on very small screens */
+  .exp-item > div:last-child,
+  .edu-item > div:last-child {
+    padding: 14px 16px !important;
+  }
 }

@@ -4,7 +4,8 @@
     "title": "Industrial Training Program",
     "issuer": "Ejob India",
     "topic": "MERN Stack Development",
-    "period": "Jan 2024 — May 2024",
+    "startDate": "Jan 2024",
+    "endDate": "May 2024",
     "link": "https://drive.google.com/file/d/1yrR4oSctkCbkzNzfKVTh1FsvOrJLbU8w/view?usp=sharing"
   },
   {
@@ -12,7 +13,8 @@
     "title": "The Web Developer Bootcamp 2024",
     "issuer": "Udemy",
     "topic": "Full Stack Web Development",
-    "period": "May 2024 — Jul 2024",
+    "startDate": "May 2024",
+    "endDate": "Jul 2024",
     "link": "https://www.udemy.com/certificate/UC-8a6da1dc-511c-4806-94dc-6639a50eeeb6/"
   }
 ]
