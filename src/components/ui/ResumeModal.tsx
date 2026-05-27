@@ -163,7 +163,7 @@ export default function ResumeModal({ open, onClose }: Props) {
                   marginBottom: 8,
                 }}
               >
-                Resume Request
+                Quick Request
               </p>
               <h2
                 style={{
@@ -174,7 +174,7 @@ export default function ResumeModal({ open, onClose }: Props) {
                   marginBottom: 8,
                 }}
               >
-                Get My Resume
+                Send My Resume
               </h2>
               <p
                 style={{
@@ -183,8 +183,8 @@ export default function ResumeModal({ open, onClose }: Props) {
                   lineHeight: 1.7,
                 }}
               >
-                Enter your details below and I'll send my resume directly to
-                your inbox.
+                Drop your details below and I'll send my resume directly to your
+                inbox.
               </p>
             </div>
 
@@ -271,7 +271,7 @@ export default function ResumeModal({ open, onClose }: Props) {
                   </>
                 ) : (
                   <>
-                    <FiSend size={15} /> Send Me the Resume
+                    <FiSend size={15} /> Send Resume to My Inbox
                   </>
                 )}
               </button>
@@ -285,7 +285,8 @@ export default function ResumeModal({ open, onClose }: Props) {
                   lineHeight: 1.6,
                 }}
               >
-                No spam. Your info is used solely to deliver the resume.
+                I'll send your resume directly to the email above. No spam, just
+                the resume.
               </p>
             </form>
           </>
@@ -383,7 +384,7 @@ function SuccessView({ onClose }: { onClose: () => void }) {
           marginBottom: 12,
         }}
       >
-        Resume Sent!
+        Done! Check Your Inbox
       </h3>
       <p
         style={{
@@ -394,8 +395,8 @@ function SuccessView({ onClose }: { onClose: () => void }) {
           margin: "0 auto 28px",
         }}
       >
-        Check your inbox — my resume is on its way. Feel free to reach out
-        directly if you have any questions.
+        My resume is on its way. If you don't see it in a moment, check your
+        spam folder. Looking forward to connecting!
       </p>
       <button
         onClick={onClose}

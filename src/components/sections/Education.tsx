@@ -138,7 +138,7 @@ function EduItem({ item }: { item: EducationItem }) {
               {item.institution}
             </p>
           </div>
-          {/* Date + Score */}
+          {/* Date */}
           <div className="edu-date-wrap">
             <span
               style={{
@@ -158,7 +158,9 @@ function EduItem({ item }: { item: EducationItem }) {
               {item.startDate}
               {item.endDate ? ` — ${item.endDate}` : ""}
             </span>
-            <br />
+          </div>
+          {/* Score (separate for mobile reordering) */}
+          <div className="edu-score-wrap">
             <span
               style={{
                 fontFamily: "var(--font-mono)",

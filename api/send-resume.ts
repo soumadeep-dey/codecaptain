@@ -2,7 +2,7 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import nodemailer from "nodemailer";
 
 const OWNER_EMAIL = "contactsoumadeepdey@gmail.com";
-const PORTFOLIO_URL = process.env.PORTFOLIO_URL;
+const PORTFOLIO_URL = process.env.PORTFOLIO_URL ?? "https://soumadeep-dey.com";
 const LINKEDIN_URL = "https://linkedin.com/in/soumadeep-dey";
 const GITHUB_URL = "https://github.com/soumadeep-dey";
 const RESUME_URL = process.env.RESUME_URL ?? "";
@@ -48,23 +48,22 @@ function buildRequesterEmail(name: string, company?: string): string {
 
             <!-- Intro -->
             <p style="font-size:15px;color:#a0a8b8;line-height:1.75;margin-bottom:20px;">
-              Thank you for your interest. As requested, my resume is attached to this email.
-              I'm a <strong style="color:#eef0f5;font-weight:600;">Full Stack Developer</strong> with 2+ years of experience 
-              building <strong style="color:#eef0f5;font-weight:600;">enterprise-grade web applications</strong> using 
-              React, Node.js, and TypeScript.
+              Thanks for reaching out. I've attached my resume to this email for your review.
             </p>
 
-            <p style="font-size:15px;color:#a0a8b8;line-height:1.75;margin-bottom:32px;">
-              I've led frontend architecture, shipped production ERP platforms, and consistently improved 
-              performance by <strong style="color:#4f9cf9;font-weight:600;">80–97%</strong> across every project I've touched.
+            <p style="font-size:15px;color:#a0a8b8;line-height:1.75;margin-bottom:24px;">
+              I'm a <strong style="color:#eef0f5;font-weight:600;">Full Stack Developer</strong> with 2+ years of hands-on experience building 
+              <strong style="color:#eef0f5;font-weight:600;">scalable web applications</strong> using React, Node.js, and TypeScript. 
+              I've led frontend architecture work, shipped production ERP platforms, and consistently delivered 
+              <strong style="color:#4f9cf9;font-weight:600;">80–97% performance improvements</strong> across projects. I take pride in writing clean, maintainable code and collaborating closely with teams to ship products that users love.
             </p>
 
             <!-- Primary CTA: Download Resume -->
             <table cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
               <tr>
                 <td style="background:#4f9cf9;border-radius:6px;padding:14px 28px;">
-                  <a href="${RESUME_URL}" style="color:#09090f;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.03em;">
-                    ↓ Download Resume
+                  <a href="${RESUME_URL || PORTFOLIO_URL}" style="color:#09090f;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.03em;">
+                    ${RESUME_URL ? "↓ Download Resume" : "View Profile"}
                   </a>
                 </td>
               </tr>
@@ -75,7 +74,7 @@ function buildRequesterEmail(name: string, company?: string): string {
               <tr>
                 <td style="background:transparent;border:1px solid rgba(79,156,249,0.35);border-radius:6px;padding:13px 28px;">
                   <a href="${PORTFOLIO_URL}" style="color:#4f9cf9;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:0.03em;">
-                    View Portfolio →
+                    View My Work →
                   </a>
                 </td>
               </tr>
@@ -98,6 +97,44 @@ function buildRequesterEmail(name: string, company?: string): string {
                   </a>
                 </td>
                 <td>
+                  <a href="${GITHUB_URL}" style="display:inline-block;background:rgba(79,156,249,0.08);border:1px solid rgba(79,156,249,0.2);border-radius:5px;padding:10px 16px;color:#4f9cf9;font-size:12px;font-weight:600;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">
+                    GitHub
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Sign off -->
+            <p style="font-size:14px;color:#a0a8b8;line-height:1.7;margin-bottom:24px;">
+              Looking forward to chatting about the opportunity. Feel free to reply directly to this email — it goes straight to my inbox.
+            </p>
+
+            <p style="font-size:14px;color:#eef0f5;font-weight:600;">
+              Best,<br/>Soumadeep
+            </p>
+            <p style="font-size:12px;color:#5a6478;margin-top:4px;">
+              Full Stack Developer · Kolkata, India
+            </p>
+
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="padding-top:24px;text-align:center;">
+            <p style="font-size:11px;color:#3a4252;line-height:1.6;">
+              You requested this resume from <a href="${PORTFOLIO_URL}" style="color:#4f9cf9;text-decoration:none;">${PORTFOLIO_URL}</a><br/>
+              This is a one-time delivery — no spam, ever.
+            </p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>`;
                   <a href="${GITHUB_URL}" style="display:inline-block;background:rgba(79,156,249,0.08);border:1px solid rgba(79,156,249,0.2);border-radius:5px;padding:10px 16px;color:#4f9cf9;font-size:12px;font-weight:600;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">
                     GitHub
                   </a>
@@ -174,6 +211,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ message: "Server configuration error." });
   }
 
+  // Debug log environment variables
+  console.log("Resume send request from:", safeEmail);
+  console.log("PORTFOLIO_URL:", PORTFOLIO_URL);
+  console.log("RESUME_URL:", RESUME_URL ? "SET" : "NOT SET");
+
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -189,7 +231,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       to: safeEmail,
       bcc: OWNER_EMAIL,
       replyTo: OWNER_EMAIL,
-      subject: "Resume — Soumadeep Dey · Full Stack Developer",
+      subject: `My Resume — Soumadeep Dey`,
       html: buildRequesterEmail(safeName, safeCompany),
       ...(RESUME_URL
         ? {
