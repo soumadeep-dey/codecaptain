@@ -135,44 +135,6 @@ function buildRequesterEmail(name: string, company?: string): string {
 </table>
 </body>
 </html>`;
-                  <a href="${GITHUB_URL}" style="display:inline-block;background:rgba(79,156,249,0.08);border:1px solid rgba(79,156,249,0.2);border-radius:5px;padding:10px 16px;color:#4f9cf9;font-size:12px;font-weight:600;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">
-                    GitHub
-                  </a>
-                </td>
-              </tr>
-            </table>
-
-            <!-- Sign off -->
-            <p style="font-size:14px;color:#a0a8b8;line-height:1.7;margin-bottom:24px;">
-              Looking forward to connecting. Feel free to reply to this email — it goes straight to my inbox.
-            </p>
-
-            <p style="font-size:14px;color:#eef0f5;font-weight:600;">
-              — Soumadeep Dey
-            </p>
-            <p style="font-size:12px;color:#5a6478;margin-top:4px;">
-              Full Stack Developer · Kolkata, India
-            </p>
-
-          </td>
-        </tr>
-
-        <!-- Footer -->
-        <tr>
-          <td style="padding-top:24px;text-align:center;">
-            <p style="font-size:11px;color:#3a4252;line-height:1.6;">
-              You requested this resume from <a href="${PORTFOLIO_URL}" style="color:#4f9cf9;text-decoration:none;">${PORTFOLIO_URL}</a><br/>
-              This is a one-time delivery — you won't receive any further emails.
-            </p>
-          </td>
-        </tr>
-
-      </table>
-    </td>
-  </tr>
-</table>
-</body>
-</html>`;
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
