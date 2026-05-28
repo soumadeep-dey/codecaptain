@@ -335,7 +335,14 @@ function SuccessView({ onClose }: { onClose: () => void }) {
       ease: "power2.out",
       delay: 0.5,
     });
-  }, []);
+
+    // Auto-close modal after 4 seconds
+    const timer = setTimeout(() => {
+      onClose();
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, [onClose]);
 
   return (
     <div style={{ textAlign: "center", padding: "20px 0" }}>

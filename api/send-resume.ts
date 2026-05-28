@@ -176,6 +176,16 @@ function buildRequesterEmail(name: string, company?: string): string {
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // CORS headers
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    res.status(200).end();
+    return;
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
@@ -208,13 +218,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (!GMAIL_USER || !GMAIL_APP_PASSWORD) {
     console.error("Missing Gmail credentials in environment variables");
-    return res.status(500).json({ message: "Server configuration error." });
+    console.error("GMAIL_USER set:", !!GMAIL_USER);
+    console.error("GMAIL_APP_PASSWORD set:", !!GMAIL_APP_PASSWORD);
+    return res.status(500).json({ 
+      message: "Email service not configured. Please try again later." 
+    });
   }
 
   // Debug log environment variables
   console.log("Resume send request from:", safeEmail);
   console.log("PORTFOLIO_URL:", PORTFOLIO_URL);
   console.log("RESUME_URL:", RESUME_URL ? "SET" : "NOT SET");
+  console.log("GMAIL_USER:", GMAIL_USER.slice(0, 5) + "...");
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -245,11 +260,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         : {}),
     });
 
+    console.log("Resume sent successfully to:", safeEmail);
     return res.status(200).json({ message: "Resume sent successfully" });
   } catch (err) {
     console.error("Nodemailer error:", err);
+    const errorMessage = err instanceof Error ? err.message : "Unknown error";
     return res
       .status(500)
-      .json({ message: "Failed to send email. Please try again." });
+      .json({ message: `Failed to send email: ${errorMessage}` });
   }
 }

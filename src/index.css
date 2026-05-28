@@ -230,6 +230,15 @@ html, body { overflow-x: hidden; max-width: 100vw; }
   grid-row: 1;
 }
 
+.edu-title-wrap h3 {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.edu-title-wrap p {
+  display: inline-block;
+}
+
 .edu-date-wrap {
   grid-column: 2;
   grid-row: 1;
@@ -246,7 +255,7 @@ html, body { overflow-x: hidden; max-width: 100vw; }
 .edu-location {
   grid-column: 1 / -1;
   grid-row: 3;
-  margin-top: 12px;
+  margin-top: 8px !important;
 }
 
 /* ── Mobile ── */
