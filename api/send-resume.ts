@@ -62,8 +62,8 @@ function buildRequesterEmail(name: string, company?: string): string {
             <table cellpadding="0" cellspacing="0" style="margin-bottom:16px;">
               <tr>
                 <td style="background:#4f9cf9;border-radius:6px;padding:14px 28px;">
-                  <a href="${RESUME_URL || PORTFOLIO_URL}" style="color:#09090f;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.03em;">
-                    ${RESUME_URL ? "↓ Download Resume" : "View Profile"}
+                  <a href="${RESUME_URL}" style="color:#09090f;font-size:14px;font-weight:700;text-decoration:none;letter-spacing:0.03em;">
+                    ↓ Download Resume
                   </a>
                 </td>
               </tr>
